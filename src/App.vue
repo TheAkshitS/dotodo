@@ -24,6 +24,6 @@ export default {
 <style>
 /* For removing default scrollbar when content is not more than the viewport  */
 html {
-  overflow-y: auto;
+  overflow-y: auto !important;
 }
 </style>
