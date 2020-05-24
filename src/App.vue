@@ -5,6 +5,8 @@
     <v-content>
       <router-view />
     </v-content>
+
+    <app-snackbar />
   </v-app>
 </template>
 
@@ -12,12 +14,10 @@
 export default {
   components: {
     AppHeader: () =>
-      import(/* webpackChunkName: "appHeader" */ '@/components/AppHeader')
-  },
-
-  data: () => ({
-    //
-  })
+      import(/* webpackChunkName: "appHeader" */ '@/components/AppHeader'),
+    AppSnackbar: () =>
+      import(/* webpackChunkName: "AppSnackbar" */ '@/components/AppSnackbar')
+  }
 }
 </script>
 
