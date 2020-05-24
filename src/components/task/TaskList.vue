@@ -13,7 +13,16 @@
         </v-col>
       </v-container>
 
-      <v-list dense>
+      <v-list v-if="!$_taskList.length">
+        <v-list-item-content>
+          <v-list-item-title class="ml-4"
+            >You have {{ $_taskList.length }} tasks, add
+            some.</v-list-item-title
+          >
+        </v-list-item-content>
+      </v-list>
+
+      <v-list dense v-else>
         <template v-for="(task, index) in $_taskList">
           <v-list-item two-line :key="task.id">
             <v-checkbox
