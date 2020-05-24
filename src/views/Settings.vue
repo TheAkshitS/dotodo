@@ -22,7 +22,7 @@
 
         <v-col sm="3">
           <h3 class="subtitle-2 mt-5 my-3">
-            <v-icon left small>mdi-account-settings</v-icon
+            <v-icon left small>mdi-translate</v-icon
             >{{ $t('settings.language') | capitalize }}
           </h3>
           <v-select
@@ -30,6 +30,7 @@
             :items="languages"
             dense
             color="success"
+            item-color="success"
             item-text="name"
             item-value="abbrivation"
             :label="`${$t('settings.language')}`"
