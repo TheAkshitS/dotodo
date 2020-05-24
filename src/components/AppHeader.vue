@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="success" dark>
     <v-toolbar-title dark class="text-uppercase">
-      <span class="font-weight-light">✔&nbsp;DO</span>
+      <span class="font-weight-light">✅&nbsp;DO</span>
       <span>&nbsp;It</span>
     </v-toolbar-title>
 
