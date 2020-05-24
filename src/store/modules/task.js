@@ -2,7 +2,8 @@ export default {
   namespaced: true,
 
   state: {
-    tasks: []
+    tasks: [],
+    selectedTask: null
   },
 
   mutations: {
@@ -20,6 +21,10 @@ export default {
 
     SET_TASK_COMPLETE(state, index) {
       state.tasks[index].done = !state.tasks[index].done
+    },
+
+    SET_SELECTED_TASK(state, task) {
+      state.selectedTask = task
     }
   },
 
@@ -29,7 +34,7 @@ export default {
     },
 
     updateTask({ commit }, index, task) {
-      commit('SET_TASK_COMPLETE', index, task)
+      commit('UPDATE_TASK', index, task)
     },
 
     deleteTask({ commit }, index) {
@@ -38,6 +43,10 @@ export default {
 
     updateTaskStatus({ commit }, index) {
       commit('SET_TASK_COMPLETE', index)
+    },
+
+    setSelectedTask({ commit }, task) {
+      commit('SET_SELECTED_TASK', task)
     }
   }
 }

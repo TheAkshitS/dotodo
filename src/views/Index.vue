@@ -5,6 +5,7 @@
     <task-dialog
       v-if="showTaskDialog"
       :action-type="actionType"
+      :task-index="taskIndex"
       :show-task-dialog.sync="showTaskDialog"
     />
 
@@ -13,10 +14,13 @@
 </template>
 
 <script>
+import { EventBus } from '@/eventBus.js'
+
 export default {
   data: () => ({
     showTaskDialog: false,
-    actionType: null
+    actionType: null,
+    taskIndex: null
   }),
 
   components: {
@@ -30,6 +34,13 @@ export default {
       import(
         /* webpackChunkName: "TaskDialog" */ '@/components/task/TaskDialog'
       )
+  },
+
+  mounted() {
+    EventBus.$on('showTaskDialog', ({ actionType }) => {
+      this.showTaskDialog = true
+      this.actionType = actionType
+    })
   },
 
   methods: {

@@ -36,13 +36,17 @@ export default {
   methods: {
     ...mapActions({
       deleteTask: 'task/deleteTask',
-      editTask: 'task/updateTask'
+      setSelectedTask: 'task/setSelectedTask'
     }),
 
-    taskAction() {
-      if (this.actionType === 'edit') this.editTask()
-      else {
-        this.deleteTask(this.taskIndex)
+    async taskAction() {
+      if (this.actionType === 'edit') {
+        await this.setSelectedTask(this.task)
+        EventBus.$emit('showTaskDialog', {
+          actionType: 'edit'
+        })
+      } else {
+        await this.deleteTask(this.taskIndex)
         EventBus.$emit('showNotification', {
           text: 'Task deleted successfully ✅'
         })
