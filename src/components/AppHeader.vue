@@ -3,7 +3,7 @@
     <v-toolbar-title
       dark
       class="text-uppercase cursor-pointer"
-      @click="$router.push({ name: 'Index' })"
+      @click="navigateToHome"
     >
       <span class="font-weight-light">✅&nbsp;Do</span>
       <span>&nbsp;todo</span>
@@ -21,3 +21,13 @@
     </v-tooltip>
   </v-app-bar>
 </template>
+
+<script>
+export default {
+  methods: {
+    navigateToHome() {
+      if (this.$route.name !== 'Index') this.$router.push({ name: 'Index' })
+    }
+  }
+}
+</script>
