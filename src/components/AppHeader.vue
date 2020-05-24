@@ -14,7 +14,7 @@
           <v-icon v-else>mdi-brightness-4</v-icon>
         </v-btn>
       </template>
-      <span>Create a new task</span>
+      <span>Change theme</span>
     </v-tooltip>
   </v-app-bar>
 </template>
