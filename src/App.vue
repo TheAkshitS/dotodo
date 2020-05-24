@@ -26,4 +26,8 @@ export default {
 html {
   overflow-y: auto !important;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
 </style>

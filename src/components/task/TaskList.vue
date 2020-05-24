@@ -106,8 +106,4 @@ export default {
 .done {
   text-decoration: line-through;
 }
-
-.cursor-pointer {
-  cursor: pointer;
-}
 </style>
