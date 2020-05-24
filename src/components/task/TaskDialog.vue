@@ -16,6 +16,7 @@
               outlined
               color="success"
               label="Task name"
+              :disabled="actionType === 'view'"
               :rules="taskNameRules"
               v-model.trim="task.name"
             />
@@ -23,11 +24,12 @@
               outlined
               color="success"
               label="Task details"
+              :disabled="actionType === 'view'"
               v-model.trim="task.details"
             />
           </v-card-text>
 
-          <v-card-actions>
+          <v-card-actions v-if="actionType !== 'view'">
             <v-spacer />
             <v-btn color="green darken-1" text type="submit">{{
               actionType === 'create' ? 'Create' : 'Update'
@@ -85,7 +87,7 @@ export default {
   },
 
   mounted() {
-    if (this.actionType === 'edit')
+    if (this.actionType === 'edit' || this.actionType === 'view')
       this.task = this.$store.state.task.selectedTask
   },
 

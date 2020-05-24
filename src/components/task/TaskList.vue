@@ -8,7 +8,9 @@
               My tasks
             </span>
 
-            <span>{{ $_taskList.length }} task</span>
+            <span
+              ><strong>{{ $_taskList.length }}</strong> tasks</span
+            >
           </v-row>
         </v-col>
       </v-container>
@@ -32,7 +34,7 @@
               @change="updateCompleteStatus(index)"
             />
 
-            <v-list-item-content>
+            <v-list-item-content class="cursor-pointer" @click="openTask(task)">
               <v-list-item-title
                 class="title mb-1"
                 :class="task.done ? 'done' : ''"
@@ -66,6 +68,7 @@
 
 <script>
 import { EventBus } from '@/eventBus.js'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -75,11 +78,24 @@ export default {
       )
   },
   methods: {
+    ...mapActions({
+      updateTaskStatus: 'task/updateTaskStatus',
+      setSelectedTask: 'task/setSelectedTask'
+    }),
+
     async updateCompleteStatus(taskIndex) {
-      await this.$store.dispatch('task/updateTaskStatus', taskIndex)
+      await this.updateTaskStatus(taskIndex)
 
       EventBus.$emit('showNotification', {
         text: 'Task completed 🎉'
+      })
+    },
+
+    async openTask(task) {
+      await this.setSelectedTask(task)
+
+      EventBus.$emit('showTaskDialog', {
+        actionType: 'view'
       })
     }
   }
@@ -89,5 +105,9 @@ export default {
 <style scoped>
 .done {
   text-decoration: line-through;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>
