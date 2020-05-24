@@ -20,22 +20,23 @@
           </v-btn>
         </v-btn-toggle>
 
-        <h3 class="subtitle-2 mt-5 my-3">
-          <v-icon left small>mdi-account-settings</v-icon
-          >{{ $t('settings.language') | capitalize }}
-        </h3>
-
-        <v-select
-          v-model="selectedLanguage"
-          :items="languages"
-          dense
-          color="success"
-          item-text="name"
-          item-value="abbrivation"
-          :label="`${$t('settings.language')}`"
-          outlined
-          class="mt-4"
-        />
+        <v-col sm="3">
+          <h3 class="subtitle-2 mt-5 my-3">
+            <v-icon left small>mdi-account-settings</v-icon
+            >{{ $t('settings.language') | capitalize }}
+          </h3>
+          <v-select
+            v-model="selectedLanguage"
+            :items="languages"
+            dense
+            color="success"
+            item-text="name"
+            item-value="abbrivation"
+            :label="`${$t('settings.language')}`"
+            outlined
+            class="mt-4"
+          />
+        </v-col>
       </v-col>
     </v-row>
   </v-container>
@@ -60,10 +61,6 @@ export default {
       immediate: true,
       get() {
         return this.$store.state.ui.darkTheme ? 'dark' : 'light'
-      },
-      set() {
-        this.$store.dispatch('ui/changeTheme', this.$vuetify.theme.dark)
-        this.$vuetify.theme.dark = !this.$vuetify.theme.dark
       }
     },
     selectedLanguage: {
@@ -75,6 +72,13 @@ export default {
         this.$store.dispatch('ui/changeLanguage', value)
         this.$i18n.locale = value
       }
+    }
+  },
+
+  methods: {
+    changeTheme() {
+      this.$store.dispatch('ui/changeTheme', this.$vuetify.theme.dark)
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     }
   }
 }
