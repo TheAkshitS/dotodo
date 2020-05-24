@@ -33,11 +33,19 @@
             </v-list-item-content>
 
             <v-list-item-icon>
-              <TaskEditButton />
+              <task-action-button
+                :task="task"
+                :task-index="index"
+                :action-type="'edit'"
+              />
             </v-list-item-icon>
 
             <v-list-item-icon>
-              <Task-delete-button :taskIndex="index" />
+              <Task-action-button
+                :task="task"
+                :task-index="index"
+                :action-type="'delete'"
+              />
             </v-list-item-icon>
           </v-list-item>
           <v-divider v-if="index !== $_taskList.length - 1" :key="index" />
@@ -52,13 +60,9 @@ import { mapActions } from 'vuex'
 
 export default {
   components: {
-    TaskEditButton: () =>
+    TaskActionButton: () =>
       import(
-        /* webpackChunkName: "TaskEditButton" */ '@/components/task/TaskEditButton'
-      ),
-    TaskDeleteButton: () =>
-      import(
-        /* webpackChunkName: "TaskDeleteButton" */ '@/components/task/TaskDeleteButton'
+        /* webpackChunkName: "TaskActionButton" */ '@/components/task/TaskActionButton'
       )
   },
   methods: {
