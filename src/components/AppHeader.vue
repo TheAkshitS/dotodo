@@ -1,8 +1,8 @@
 <template>
   <v-app-bar app color="success" dark>
     <v-toolbar-title dark class="text-uppercase">
-      <span class="font-weight-light">✅&nbsp;DO</span>
-      <span>&nbsp;It</span>
+      <span class="font-weight-light">✅&nbsp;Do</span>
+      <span>&nbsp;todo</span>
     </v-toolbar-title>
 
     <v-spacer />
