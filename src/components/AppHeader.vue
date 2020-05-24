@@ -1,6 +1,10 @@
 <template>
   <v-app-bar app color="success" dark>
-    <v-toolbar-title dark class="text-uppercase">
+    <v-toolbar-title
+      dark
+      class="text-uppercase cursor-pointer"
+      @click="$router.push({ name: 'Index' })"
+    >
       <span class="font-weight-light">✅&nbsp;Do</span>
       <span>&nbsp;todo</span>
     </v-toolbar-title>
@@ -9,35 +13,11 @@
 
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn icon v-on="on" @click="changeTheme">
-          <v-icon v-if="!isDarkTheme">mdi-brightness-7</v-icon>
-          <v-icon v-else>mdi-brightness-4</v-icon>
-        </v-btn>
+        <v-btn icon to="/settings" v-on="on"
+          ><v-icon>mdi-cog-outline</v-icon></v-btn
+        >
       </template>
-      <span>Change theme</span>
+      <span>Settings</span>
     </v-tooltip>
   </v-app-bar>
 </template>
-
-<script>
-export default {
-  computed: {
-    isDarkTheme: {
-      immediate: true,
-      get() {
-        return this.$store.state.ui.darkTheme
-      },
-      set() {
-        this.changeTheme()
-      }
-    }
-  },
-
-  methods: {
-    async changeTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      await this.$store.dispatch('ui/changeTheme', this.$vuetify.theme.dark)
-    }
-  }
-}
-</script>

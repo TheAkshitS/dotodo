@@ -11,10 +11,15 @@ const routes = [
     component: Index
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/settings',
+    name: 'Settings',
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
+      import(/* webpackChunkName: "settings" */ '@/views/Settings.vue')
+  },
+  {
+    // Redirect to Index route if no valid route found
+    path: '*',
+    redirect: { name: 'Index' }
   }
 ]
 
