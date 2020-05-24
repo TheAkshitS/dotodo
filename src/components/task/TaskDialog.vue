@@ -10,7 +10,7 @@
           >
         </v-card-title>
 
-        <v-form ref="createTaskForm" @submit.prevent="createTask">
+        <v-form ref="createTaskForm" @submit.prevent="submitForm">
           <v-card-text>
             <v-text-field
               outlined
@@ -41,6 +41,7 @@
 
 <script>
 import { EventBus } from '@/eventBus.js'
+import { mapActions } from 'vuex'
 
 export default {
   props: {
@@ -52,6 +53,10 @@ export default {
     actionType: {
       type: String,
       required: true
+    },
+
+    taskIndex: {
+      default: null
     }
   },
 
@@ -79,19 +84,44 @@ export default {
     }
   },
 
+  mounted() {
+    if (this.actionType === 'edit')
+      this.task = this.$store.state.task.selectedTask
+  },
+
   destroyed() {
     this.resetTask()
   },
 
   methods: {
-    async createTask() {
+    ...mapActions({
+      createTask: 'task/createTask',
+      updateTask: 'task/updateTask'
+    }),
+
+    async submitForm() {
       if (this.$refs.createTaskForm.validate()) {
-        await this.$store.dispatch('task/createTask', this.task)
+        if (this.actionType === 'edit') this.editTask()
+        else this.createNewTask()
+
         this.$emit('update:showTaskDialog', false)
-        EventBus.$emit('showNotification', {
-          text: 'Task created successfully ✅'
-        })
       }
+    },
+
+    async createNewTask() {
+      await this.createTask(this.task)
+
+      EventBus.$emit('showNotification', {
+        text: 'Task created successfully ✅'
+      })
+    },
+
+    async editTask() {
+      await this.updateTask(this.taskIndex, this.task)
+
+      EventBus.$emit('showNotification', {
+        text: 'Task updated successfully ✅'
+      })
     },
 
     resetTask() {
