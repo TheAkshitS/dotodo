@@ -29,7 +29,7 @@
               color="success"
               class="mr-5"
               :input-value="task.done"
-              @change="updateTaskStatus(index)"
+              @change="updateCompleteStatus(index)"
             />
 
             <v-list-item-content>
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { EventBus } from '@/eventBus.js'
 
 export default {
   components: {
@@ -75,9 +75,13 @@ export default {
       )
   },
   methods: {
-    ...mapActions({
-      updateTaskStatus: 'task/updateTaskStatus'
-    })
+    async updateCompleteStatus(taskIndex) {
+      await this.$store.dispatch('task/updateTaskStatus', taskIndex)
+
+      EventBus.$emit('showNotification', {
+        text: 'Task completed 🎉'
+      })
+    }
   }
 }
 </script>
