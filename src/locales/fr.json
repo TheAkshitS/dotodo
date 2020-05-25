@@ -1,4 +1,7 @@
 {
+  "dashboard": {
+    "myTasks": "ma liste"
+  },
   "settings": {
     "settings": "réglages",
     "theme": "thème",

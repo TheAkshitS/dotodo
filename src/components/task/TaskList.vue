@@ -5,7 +5,7 @@
         <v-col>
           <v-row justify="space-between">
             <span class="title">
-              My tasks
+              {{ $t('dashboard.myTasks') | capitalize }}
             </span>
 
             <span
@@ -87,7 +87,7 @@ export default {
       await this.updateTaskStatus(taskIndex)
 
       EventBus.$emit('showNotification', {
-        text: 'Task completed 🎉'
+        text: 'Task status updated 🎉'
       })
     },
 
