@@ -3,16 +3,27 @@
     <h2 class="title">{{ $t('settings.settings') | capitalize }}</h2>
     <v-row>
       <v-col>
-        <h3 class="subtitle-2 my-3">
-          <v-icon left small>mdi-theme-light-dark</v-icon
-          >{{ $t('settings.theme') | capitalize }}
-        </h3>
+        <v-row align="center" justify="space-between">
+          <h3 class="subtitle-2 my-3 ml-5">
+            <v-icon left small>mdi-theme-light-dark</v-icon
+            >{{ $t('settings.theme') | capitalize }}
+          </h3>
+          <v-btn
+            small
+            outlined
+            color="warning"
+            class="mr-3"
+            @click="$router.push({ name: 'Secret' })"
+            >Into the wild</v-btn
+          >
+        </v-row>
 
         <v-btn-toggle
           :value="isDarkTheme"
           dense
           mandatory
           rounded
+          class="ml-1"
           @change="changeTheme"
         >
           <v-btn v-for="theme in themes" :key="theme.name" :value="theme.name">
@@ -39,6 +50,9 @@
           />
         </v-col>
       </v-col>
+    </v-row>
+    <v-row style="height: 200px;" align="end">
+      <v-col> </v-col>
     </v-row>
   </v-container>
 </template>
