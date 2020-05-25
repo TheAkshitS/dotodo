@@ -14,15 +14,10 @@
 </template>
 
 <script>
+import titleMixin from '@/mixins/titleMixin'
 import { EventBus } from '@/eventBus.js'
 
 export default {
-  data: () => ({
-    showTaskDialog: false,
-    actionType: null,
-    taskIndex: null
-  }),
-
   components: {
     TaskCreateButton: () =>
       import(
@@ -35,6 +30,18 @@ export default {
         /* webpackChunkName: "TaskDialog" */ '@/components/task/TaskDialog'
       )
   },
+
+  mixins: [titleMixin],
+
+  title() {
+    return `Dashboard`
+  },
+
+  data: () => ({
+    showTaskDialog: false,
+    actionType: null,
+    taskIndex: null
+  }),
 
   mounted() {
     EventBus.$on('showTaskDialog', ({ actionType }) => {

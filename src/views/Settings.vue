@@ -44,7 +44,15 @@
 </template>
 
 <script>
+import titleMixin from '@/mixins/titleMixin'
+
 export default {
+  mixins: [titleMixin],
+
+  title() {
+    return 'Settings'
+  },
+
   data: () => ({
     themes: [
       { name: 'light', icon: 'mdi-brightness-7' },
