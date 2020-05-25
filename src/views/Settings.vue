@@ -61,7 +61,7 @@ export default {
 
     languages: [
       { name: 'English', abbrivation: 'en' },
-      { name: 'French', abbrivation: 'fr' }
+      { name: 'Française', abbrivation: 'fr' }
     ]
   }),
 
