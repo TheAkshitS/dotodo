@@ -100,8 +100,8 @@ export default {
 
   methods: {
     changeTheme() {
-      this.$store.dispatch('ui/changeTheme', this.$vuetify.theme.dark)
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      this.$store.dispatch('ui/changeTheme', this.$vuetify.theme.dark)
     }
   }
 }
